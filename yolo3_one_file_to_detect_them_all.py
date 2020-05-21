@@ -1,3 +1,4 @@
+import sys
 import argparse
 import os
 import numpy as np
@@ -6,8 +7,9 @@ from keras.layers.merge import add, concatenate
 from keras.models import Model
 import struct
 import cv2
+import math
 
-np.set_printoptions(threshold=np.nan)
+np.set_printoptions(threshold=sys.maxsize)
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
@@ -266,7 +268,7 @@ def preprocess_input(image, net_h, net_w):
     else:
         new_w = (new_w * net_h)/new_h
         new_h = net_h
-
+    new_h = math.floor(new_h)
     # resize the image to the new size
     resized = cv2.resize(image[:,:,::-1]/255., (int(new_w), int(new_h)))
 

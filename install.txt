@@ -1,0 +1,5 @@
+pip install keras
+pip install opencv-python
+apt install -y libsm6
+apt-get install libxrender1
+apt-get install libxext6
